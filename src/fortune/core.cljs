@@ -35,3 +35,14 @@
   [[[x1 y1] k] x]
   (+ y1 (* k (- x x1) (- x x1))))
 
+
+
+
+;;
+;; Beach head
+;;
+
+; The beach head can be described when we have l (the sweep line position)
+; by a set of parabolas and points. p0, x0, p1, x1, p2, x2, p3.
+;
+;
