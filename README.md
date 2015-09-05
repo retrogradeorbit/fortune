@@ -1,10 +1,10 @@
 # fortune
 
-FIXME: Write a one-line description of your library/project.
+An attempt to do a ground up implementation of Fortune's algorithm in clojurescript.
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+https://en.wikipedia.org/wiki/Fortune%27s_algorithm
 
 ## Setup
 
@@ -30,7 +30,7 @@ To create a production build run:
     lein cljsbuild once min
 
 And open your browser in `resources/public/index.html`. You will not
-get live reloading, nor a REPL. 
+get live reloading, nor a REPL.
 
 ## License
 
