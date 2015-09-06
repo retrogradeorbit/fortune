@@ -15,33 +15,45 @@
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
-  :cljsbuild {
-    :builds [{:id "dev"
-              :source-paths ["src"]
+  :cljsbuild
+  {
+   :builds
+   {
+    :dev {
+          :source-paths ["src"]
 
-              :figwheel { :on-jsload "fortune.core/on-js-reload" }
+          :figwheel { :on-jsload "fortune.core/on-js-reload" }
 
-              :compiler {:main fortune.core
-                         :asset-path "js/compiled/out"
-                         :output-to "resources/public/js/compiled/fortune.js"
-                         :output-dir "resources/public/js/compiled/out"
-                         :source-map-timestamp true }}
-             {:id "min"
-              :source-paths ["src"]
-              :compiler {:output-to "resources/public/js/compiled/fortune.js"
-                         :main fortune.core
-                         :optimizations :advanced
-                         :pretty-print false}}]}
+          :compiler {:main fortune.core
+                     :asset-path "js/compiled/out"
+                     :output-to "resources/public/js/compiled/fortune.js"
+                     :output-dir "resources/public/js/compiled/out"
+                     :source-map-timestamp true }}
+    :min {
+          :source-paths ["src"]
+          :compiler {:output-to "resources/public/js/compiled/fortune.js"
+                     :main fortune.core
+                     :optimizations :advanced
+                     :pretty-print false}}
+    :test {
+           :source-paths ["src" "test"]
+           :compiler {:output-to "resources/test/compiled.js"
+                      :optimizations :whitespace
+                      :pretty-print true}}}
+   :test-commands {"test" ["phantomjs"
+                           "resources/test/test.js"
+                           "resources/test/test.html"]}
+   }
 
   :figwheel {
-             ;; :http-server-root "public" ;; default and assumes "resources" 
+             ;; :http-server-root "public" ;; default and assumes "resources"
              ;; :server-port 3449 ;; default
-             ;; :server-ip "127.0.0.1" 
+             ;; :server-ip "127.0.0.1"
 
              :css-dirs ["resources/public/css"] ;; watch and update CSS
 
              ;; Start an nREPL server into the running figwheel process
-             ;; :nrepl-port 7888
+             :nrepl-port 7888
 
              ;; Server Ring Handler (optional)
              ;; if you want to embed a ring handler into the figwheel http-kit
@@ -56,11 +68,11 @@
              ;; #! /bin/sh
              ;; emacsclient -n +$2 $1
              ;;
-             ;; :open-file-command "myfile-opener"
+             :open-file-command "figwheel-opener"
 
              ;; if you want to disable the REPL
              ;; :repl false
 
              ;; to configure a different figwheel logfile path
-             ;; :server-logfile "tmp/logs/figwheel-logfile.log" 
+             ;; :server-logfile "tmp/logs/figwheel-logfile.log"
              })
