@@ -35,8 +35,17 @@
   [[[x1 y1] k] x]
   (+ y1 (* k (- x x1) (- x x1))))
 
-
-
+(defn parabola-intersection
+  "Given two parabolas [pos1 k1] [pos2 k2]
+  return the two solutions for x that satisfy both graphs
+  using quadratic formula"
+  [[[x1 y1] k1] [[x2 y2] k2]]
+  (let [a (- k1 k2)
+        b (- (* 2 k2 x2) (* 2 k1 x1))
+        c (+ (* k1 x1 x1) (* (- k2) x2 x2) (- y1) y2)
+        sqrt-b2-4ac (Math/sqrt (- (* b b) (* 4 a c)))]
+    [(/ (+ (- b) sqrt-b2-4ac) (* 2 a))
+     (/ (- (- b) sqrt-b2-4ac) (* 2 a))]))
 
 ;;
 ;; Beach head
