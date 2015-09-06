@@ -42,10 +42,24 @@
   [[[x1 y1] k1] [[x2 y2] k2]]
   (let [a (- k1 k2)
         b (- (* 2 k2 x2) (* 2 k1 x1))
-        c (+ (* k1 x1 x1) (* (- k2) x2 x2) (- y1) y2)
-        sqrt-b2-4ac (Math/sqrt (- (* b b) (* 4 a c)))]
-    [(/ (+ (- b) sqrt-b2-4ac) (* 2 a))
-     (/ (- (- b) sqrt-b2-4ac) (* 2 a))]))
+        c (+ (* k1 x1 x1) (* (- k2) x2 x2) (- y2) y1)
+        b2-4ac (- (* b b) (* 4 a c))]
+    (if (= 0 a)
+      (if (= b 0)
+        ;; no solution
+        #{}
+
+        ;; one solution
+        #{(/ (- c) b)})
+
+      (if (= 0 b2-4ac)
+        ;; one solution
+        #{(/ (- b) (* 2 a))}
+
+        ;; two solutions
+        (let [sqrt-b2-4ac (Math/sqrt b2-4ac)]
+          #{(/ (+ (- b) sqrt-b2-4ac) (* 2 a))
+            (/ (- (- b) sqrt-b2-4ac) (* 2 a))})))))
 
 ;;
 ;; Beach head
