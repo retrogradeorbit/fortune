@@ -22,3 +22,6 @@
   (is (= (core/parabola-intersection [[0 0] 1] [[0 0] 2]) #{0}))
   (is (= (core/parabola-intersection [[0 1] 1] [[0 0] 2]) #{-1 1}))
   (is (= (core/parabola-intersection [[0 1] 1] [[0 0] 1]) #{})))
+
+(deftest circle-center
+  (is (= (core/circle-center [0 1] [1 0] [-1 0]) [0 0])))
