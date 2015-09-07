@@ -61,6 +61,30 @@
           #{(/ (+ (- b) sqrt-b2-4ac) (* 2 a))
             (/ (- (- b) sqrt-b2-4ac) (* 2 a))})))))
 
+(defn circle-center
+  "given three points that lie on the circumference
+  of a circle, return the center location"
+  [[a1 a2] [b1 b2] [c1 c2]]
+  (let [
+        ;; slopes of lines to center
+        m1 (/ (- a1 b1) (- b2 a2))
+        m2 (/ (- b1 c1) (- c2 b2))
+
+        ;; points lines to center pass through (d and e)
+        d1 (+ a1 (* 0.5 (- b1 a1)))
+        d2 (+ a2 (* 0.5 (- b2 a2)))
+        e1 (+ b1 (* 0.5 (- c1 b1)))
+        e2 (+ b2 (* 0.5 (- c2 b2)))
+
+        ;; the x position of the center
+        x (/
+           (- (* m1 d1) d2 (* m2 e1) (- e2))
+           (- m1 m2))
+
+        ;; the y position of the center
+        y (- (* m1 x) (* m1 d1) (- d2))]
+    [x y]))
+
 ;;
 ;; Beach head
 ;;
