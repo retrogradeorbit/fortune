@@ -86,12 +86,23 @@
         e2 (+ b2 (* 0.5 (- c2 b2)))
 
         ;; the x position of the center
-        x (/
-           (- (* m1 d1) d2 (* m2 e1) (- e2))
-           (- m1 m2))
+        x (if (= c2 b2)
+            ;; m2 is infinite
+            e1
+
+            (if (= b2 a2)
+              ;; m1 is infinit
+              d1
+
+              ;; m1 and m2 have finite slope
+              (/
+               (- (* m1 d1) d2 (* m2 e1) (- e2))
+               (- m1 m2))))
 
         ;; the y position of the center
-        y (- (* m1 x) (* m1 d1) (- d2))]
+        y (if (= b2 a2)
+            (- (* m2 x) (* m2 e1) (- e2))
+            (- (* m1 x) (* m1 d1) (- d2)))]
     [x y]))
 
 ;;
