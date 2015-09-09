@@ -61,15 +61,6 @@
           #{(/ (+ (- b) sqrt-b2-4ac) (* 2 a))
             (/ (- (- b) sqrt-b2-4ac) (* 2 a))})))))
 
-(def a1 0)
-(def a2 1)
-
-(def b1 1)
-(def b2 0)
-
-(def c1 -1)
-(def c2 0)
-
 (defn circle-center
   "given three points that lie on the circumference
   of a circle, return the center location"
