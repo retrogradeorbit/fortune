@@ -111,3 +111,19 @@
 ; All the odd indexes 1, 3, 5 etc are x positions
 ;
 ; eg [ [10 4] 5 [12 6] 7 [10 4] ]
+
+(defn add-to-beach-head [beach-head [x y]]
+  (if (empty? beach-head)
+    [[x y]]
+    ;; binary search
+    (let [num (count beach-head)
+          half (dec (int (/ num 2)))
+          [mx my] (nth beach-head half)]
+      (if (< x mx)
+        ;; on the left
+
+
+        ;; on the right
+        )
+      ))
+  )
