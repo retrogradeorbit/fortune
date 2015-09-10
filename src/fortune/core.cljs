@@ -103,4 +103,11 @@
 ; The beach head can be described when we have l (the sweep line position)
 ; by a set of parabolas and points. p0, x0, p1, x1, p2, x2, p3.
 ;
+; p0, p1 are parabolas defined by points (and the line)
+; x0, x1 are the x positions of the boundaries between the parabolas
 ;
+; there is always an odd number of parts. All the even numbered indexes
+; 0, 2, 4 etc are parabolas
+; All the odd indexes 1, 3, 5 etc are x positions
+;
+; eg [ [10 4] 5 [12 6] 7 [10 4] ]
