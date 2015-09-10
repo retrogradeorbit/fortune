@@ -82,7 +82,7 @@
             e1
 
             (if (= b2 a2)
-              ;; m1 is infinit
+              ;; m1 is infinite
               d1
 
               ;; m1 and m2 have finite slope
