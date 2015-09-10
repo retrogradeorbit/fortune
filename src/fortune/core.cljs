@@ -127,3 +127,9 @@
         )
       ))
   )
+
+(defn fortune [points ystart yend ydelta]
+  (loop [beach-head []
+         remaining (sort-by second points)]
+    (let [[x y] (first remaining)]
+      (recur (add-to-beach-head beach-head [x y])))))
