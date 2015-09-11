@@ -62,8 +62,8 @@
             (/ (- (- b) sqrt-b2-4ac) (* 2 a))})))))
 
 (defn circle-center
-  "given three points that lie on the circumference
-  of a circle, return the center location"
+  "given three points that lie on the circumference of a circle,
+  return the center location"
   [[a1 a2] [b1 b2] [c1 c2]]
   (let [
         ;; slopes of lines to center
