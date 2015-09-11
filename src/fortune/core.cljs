@@ -178,6 +178,10 @@
   (< (Math/abs (- a b)) 1E-15))
 
 (let [[x1 x2] (vec (sweep-parabola-intersection [5 5] [10 10] 4))]
-  (almost
-   (parabola-y (compute-parabola-from-point-and-sweep [5 5] 4) x1)
-   (parabola-y (compute-parabola-from-point-and-sweep [10 10] 4) x1)))
+  (and
+   (almost
+        (parabola-y (compute-parabola-from-point-and-sweep [5 5] 4) x1)
+        (parabola-y (compute-parabola-from-point-and-sweep [10 10] 4) x1))
+   (almost
+        (parabola-y (compute-parabola-from-point-and-sweep [5 5] 4) x2)
+        (parabola-y (compute-parabola-from-point-and-sweep [10 10] 4) x2))))
