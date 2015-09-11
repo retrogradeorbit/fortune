@@ -140,7 +140,17 @@
 ;
 ; eg [ [10 4] 5 [12 6] 7 [10 4] ]
 
-(defn add-to-beach-head [beach-head [x y]]
+#_ (def points [[10 4] [12 6] [10 4]])
+(def line-y 10)
+
+#_ (defn make-beach-head [points]
+     (map vector points (next points))
+)
+
+
+
+
+#_ (defn add-to-beach-head [beach-head [x y]]
   (if (empty? beach-head)
     [[x y]]
     ;; binary search
@@ -156,10 +166,18 @@
       ))
   )
 
-(defn fortune [points ystart yend ydelta]
+#_ (defn fortune [points ystart yend ydelta]
   (loop [beach-head []
          remaining (sort-by second points)]
     (let [[x y] (first remaining)]
       (recur (add-to-beach-head beach-head [x y])))))
 
 (compute-parabola-from-point-and-sweep [5 5] -13)
+
+(defn almost [a b]
+  (< (Math/abs (- a b)) 1E-15))
+
+(let [[x1 x2] (vec (sweep-parabola-intersection [5 5] [10 10] 4))]
+  (almost
+   (parabola-y (compute-parabola-from-point-and-sweep [5 5] 4) x1)
+   (parabola-y (compute-parabola-from-point-and-sweep [10 10] 4) x1)))
