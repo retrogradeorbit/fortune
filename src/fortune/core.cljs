@@ -119,6 +119,11 @@
      ;; k
      (/ 1 denom)]))
 
+
+(defn sweep-parabola-intersection [pos1 pos2 sweep]
+  (parabola-intersection
+   (compute-parabola-from-point-and-sweep pos1 sweep)
+   (compute-parabola-from-point-and-sweep pos2 sweep)))
 ;;
 ;; Beach head
 ;;
