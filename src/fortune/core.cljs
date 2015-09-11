@@ -161,3 +161,5 @@
          remaining (sort-by second points)]
     (let [[x y] (first remaining)]
       (recur (add-to-beach-head beach-head [x y])))))
+
+(compute-parabola-from-point-and-sweep [5 5] -13)
