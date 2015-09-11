@@ -96,6 +96,29 @@
             (- (* m1 x) (* m1 d1) (- d2)))]
     [x y]))
 
+(defn compute-parabola-from-point-and-sweep
+  "calculate the parabolic coefficients from the point and the
+  position of the sweep line. returns [[x y] k] where x and y are the
+  turning point and k is the coefficient"
+  [[p q] l]
+  (let [denom (-
+               (* 2 q)
+               (* 2 l))]
+    [[
+       ;; x
+       p
+
+       ;; y
+       (/
+        (-
+         (* q q)
+         (* l l))
+        denom)
+      ]
+
+     ;; k
+     (/ 1 denom)]))
+
 ;;
 ;; Beach head
 ;;
