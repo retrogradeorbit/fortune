@@ -239,3 +239,11 @@
   ([beach x sweep]
    (binary-find beach x sweep 0 (-> beach count (/ 2) int inc))))
 
+(defn add-to-beach [beach [x y] sweep]
+  (let [pos (binary-find beach x sweep)]
+
+    (concat
+     (subvec beach 0  (inc (* 2 pos)))
+     [(- x 0.0001) [x y] (+ x 0.0001)]
+     (subvec beach (* 2 pos) (count beach)))
+     ))
