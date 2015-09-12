@@ -172,10 +172,6 @@
   This function changes nothing. It is read only. No new collections
   are created. It only returns the position of the parabola whose
   beach line we intersect.
-
-  We could cache these boundary values because there maybe multiple
-  searches for a single sweepline position, but that is left as an
-  optimisation excercise for later.
   "
   ([beach points betweens x sweep left right]
    (let [gap (- right left)]
