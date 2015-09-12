@@ -67,3 +67,12 @@
     (is (core/almost
          (core/parabola-y (core/compute-parabola-from-point-and-sweep p1 sweep) x1)
          (core/parabola-y (core/compute-parabola-from-point-and-sweep p2 sweep) x1)))))
+
+(deftest binary-find
+  (let [beach [[10 10] 0.5999 [6 9] 6.0001 [10 10]]
+        sweep 8
+        next-beach (core/update-beach-intersections beach sweep)]
+    (is (= 0 (core/binary-find next-beach -3.9 sweep)))
+    (is (= 1 (core/binary-find next-beach -3.8 sweep)))
+    (is (= 1 (core/binary-find next-beach 7.8 sweep)))
+    (is (= 2 (core/binary-find next-beach 7.9 sweep)))))

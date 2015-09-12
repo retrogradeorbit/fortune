@@ -159,10 +159,6 @@
         (concat [(last points)])
         vec)))
 
-(let [beach [[10 10] 0.5999 [6 9] 6.0001 [10 10]]
-        sweep 8]
-    (update-beach-intersections beach sweep))
-
 (defn binary-find
   "do a binary search for the point we are intersecting on. We compute
   the intersection of two adjacent parabolas on the beach line.  If
@@ -195,6 +191,11 @@
     x sweep left right))
   ([beach x sweep]
    (binary-find beach x sweep 0 (-> beach count (/ 2) int inc))))
+
+
+(let [beach [[10 10] 0.5999 [6 9] 6.0001 [10 10]]
+        sweep 8]
+    (update-beach-intersections beach sweep))
 
 (defn add-to-beach [beach [x y] sweep]
   (let [pos (binary-find beach x sweep)]
