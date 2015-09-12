@@ -185,3 +185,19 @@
    (almost
         (parabola-y (compute-parabola-from-point-and-sweep [5 5] 4) x2)
         (parabola-y (compute-parabola-from-point-and-sweep [10 10] 4) x2))))
+
+(defn update-beach-intersections [beach sweep]
+  (let [points (take-nth 2 beach)
+        betweens (take-nth 2 (drop 1 beach))
+        ]
+    (-> (interleave
+         points
+         (map (fn [idx p0 p1]
+                (->> (sweep-parabola-intersection p0 p1 sweep)
+                     (sort-by #(Math/abs (- % (nth betweens idx))))
+                     first))
+              (range) points (next points)))
+
+        (concat [(last points)])
+        vec)))
+
