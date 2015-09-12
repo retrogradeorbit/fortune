@@ -201,3 +201,41 @@
         (concat [(last points)])
         vec)))
 
+
+(defn binary-find
+  "do a binary search for the point we are intersecting on. We compute
+  the intersection of two adjacent parabolas on the beach line.  If
+  the new point x is to the left we recurse with that half, otherwise
+  we recurse with the other half.
+
+  This function changes nothing. It is read only. No new collections
+  are created. It only returns the position of the parabola whose
+  beach line we intersect.
+
+  We could cache these boundary values because there maybe multiple
+  searches for a single sweepline position, but that is left as an
+  optimisation excercise for later.
+  "
+  ([beach points betweens x sweep left right]
+   (let [gap (- right left)]
+     (if (= gap 1)
+       ;; the final position
+       left
+
+       (let [half (int (/ gap 2))
+             pos (+ left half)
+             between (nth betweens (dec pos))
+             ]
+         (if (< between x)
+           ;; right
+           (recur beach points betweens x sweep pos right)
+
+           ;; left
+           (recur beach points betweens x sweep left pos))))))
+  ([beach x sweep left right]
+   (binary-find
+    beach (take-nth 2 beach) (take-nth 2 (drop 1 beach))
+    x sweep left right))
+  ([beach x sweep]
+   (binary-find beach x sweep 0 (-> beach count (/ 2) int inc))))
+
