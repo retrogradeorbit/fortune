@@ -140,51 +140,6 @@
 ;
 ; eg [ [10 4] 5 [12 6] 7 [10 4] ]
 
-#_ (def points [[10 4] [12 6] [10 4]])
-(def line-y 10)
-
-#_ (defn make-beach-head [points]
-     (map vector points (next points))
-)
-
-
-
-
-#_ (defn add-to-beach-head [beach-head [x y]]
-  (if (empty? beach-head)
-    [[x y]]
-    ;; binary search
-    (let [num (count beach-head)
-          half (dec (int (/ num 2)))
-          [mx my] (nth beach-head half)]
-      (if (< x mx)
-        ;; on the left
-
-
-        ;; on the right
-        )
-      ))
-  )
-
-#_ (defn fortune [points ystart yend ydelta]
-  (loop [beach-head []
-         remaining (sort-by second points)]
-    (let [[x y] (first remaining)]
-      (recur (add-to-beach-head beach-head [x y])))))
-
-(compute-parabola-from-point-and-sweep [5 5] -13)
-
-(defn almost [a b]
-  (< (Math/abs (- a b)) 1E-15))
-
-(let [[x1 x2] (vec (sweep-parabola-intersection [5 5] [10 10] 4))]
-  (and
-   (almost
-        (parabola-y (compute-parabola-from-point-and-sweep [5 5] 4) x1)
-        (parabola-y (compute-parabola-from-point-and-sweep [10 10] 4) x1))
-   (almost
-        (parabola-y (compute-parabola-from-point-and-sweep [5 5] 4) x2)
-        (parabola-y (compute-parabola-from-point-and-sweep [10 10] 4) x2))))
 
 (defn update-beach-intersections [beach sweep]
   (let [points (take-nth 2 beach)
@@ -201,6 +156,9 @@
         (concat [(last points)])
         vec)))
 
+(let [beach [[10 10] 0.5999 [6 9] 6.0001 [10 10]]
+        sweep 8]
+    (update-beach-intersections beach sweep))
 
 (defn binary-find
   "do a binary search for the point we are intersecting on. We compute
@@ -247,3 +205,6 @@
      [(- x 0.0001) [x y] (+ x 0.0001)]
      (subvec beach (* 2 pos) (count beach)))
      ))
+
+(def points [[10 10] [3 7] [5 1] [2 4] [6 9] [7 3] [4 5] [7 1]])
+(def opoints (reverse (sort-by second points)))
